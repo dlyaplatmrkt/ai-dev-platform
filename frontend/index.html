@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Dev Platform</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="logo">
+        <span class="logo-icon">AI</span>
+        <span class="logo-text">Dev Platform</span>
+      </div>
+      <nav>
+        <button class="nav-btn active" data-tab="generate">Generate</button>
+        <button class="nav-btn" data-tab="projects">Projects</button>
+        <button class="nav-btn" data-tab="github">GitHub Push</button>
+        <button class="nav-btn" data-tab="index">Index Repo</button>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="content">
+
+      <!-- Generate Tab -->
+      <section id="tab-generate" class="tab active">
+        <h1>Generate Project</h1>
+        <div class="form-group">
+          <label>Project Name</label>
+          <input type="text" id="projectName" placeholder="my-awesome-project" />
+        </div>
+        <div class="form-group">
+          <label>Template</label>
+          <select id="template">
+            <option value="website">Website</option>
+            <option value="landing">Landing Page</option>
+            <option value="api">REST API</option>
+            <option value="bot">Telegram Bot</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Task Description</label>
+          <textarea id="taskInput" rows="5" placeholder="Describe what you want to build..."></textarea>
+        </div>
+        <button class="btn-primary" id="generateBtn">Generate</button>
+
+        <div id="generatingStatus" class="status hidden">
+          <div class="spinner"></div>
+          <span>Generating your project...</span>
+        </div>
+
+        <div id="resultSection" class="result-section hidden">
+          <div class="result-header">
+            <h2>Generated Files</h2>
+            <div class="result-actions">
+              <button class="btn-secondary" id="previewBtn">Preview</button>
+              <button class="btn-secondary" id="stopPreviewBtn" style="display:none">Stop Preview</button>
+            </div>
+          </div>
+          <div id="planText" class="plan-text"></div>
+          <div id="filesList" class="files-list"></div>
+          <div id="previewFrame" class="preview-frame hidden">
+            <div class="preview-header">
+              <span id="previewUrl"></span>
+              <button class="btn-icon" id="openPreviewBtn">Open in tab</button>
+            </div>
+            <iframe id="previewIframe" src="" frameborder="0"></iframe>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects Tab -->
+      <section id="tab-projects" class="tab">
+        <h1>My Projects</h1>
+        <button class="btn-secondary" id="refreshProjectsBtn">Refresh</button>
+        <div id="projectsList" class="projects-grid"></div>
+      </section>
+
+      <!-- GitHub Push Tab -->
+      <section id="tab-github" class="tab">
+        <h1>Push to GitHub</h1>
+        <div class="form-group">
+          <label>Project Name</label>
+          <input type="text" id="ghProjectName" placeholder="my-awesome-project" />
+        </div>
+        <div class="form-group">
+          <label>GitHub Repo URL</label>
+          <input type="text" id="ghRepoUrl" placeholder="https://github.com/user/repo" />
+        </div>
+        <div class="form-group">
+          <label>GitHub Token</label>
+          <input type="password" id="ghToken" placeholder="ghp_xxxxxxxxxxxx" />
+        </div>
+        <div class="form-group">
+          <label>Commit Message</label>
+          <input type="text" id="ghCommitMsg" value="feat: AI generated project" />
+        </div>
+        <button class="btn-primary" id="pushBtn">Push to GitHub</button>
+        <div id="pushStatus" class="status-msg hidden"></div>
+      </section>
+
+      <!-- Index Repo Tab -->
+      <section id="tab-index" class="tab">
+        <h1>Index Repository</h1>
+        <p class="desc">Index a GitHub repository so the AI can learn from your codebase.</p>
+        <div class="form-group">
+          <label>Repo URL</label>
+          <input type="text" id="indexRepoUrl" placeholder="https://github.com/user/repo" />
+        </div>
+        <div class="form-group">
+          <label>GitHub Token (optional for private repos)</label>
+          <input type="password" id="indexToken" placeholder="ghp_xxxxxxxxxxxx" />
+        </div>
+        <button class="btn-primary" id="indexBtn">Index Repository</button>
+        <div id="indexStatus" class="status-msg hidden"></div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
